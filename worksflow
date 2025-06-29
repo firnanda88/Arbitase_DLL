@@ -1,0 +1,25 @@
+name: Bangun DLL untuk Arbitrase
+
+on:
+  push:
+    branches: [ utama ]
+  workflow_dispatch:
+
+jobs:
+  membangun-dll:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v3
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build DLL
+        run: cl /LD arbitrase_berbagi_memori.cpp arbitrase_berbagi_memori.def /OUT:arbitrage_shared_memory.dll
+
+      - name: Upload Artefak
+        uses: actions/upload-artifact@v4
+        with:
+          name: arbitrage_shared_memory
+          path: arbitrage_shared_memory.dll
