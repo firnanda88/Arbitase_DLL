@@ -1,0 +1,5 @@
+
+LIBRARY ArbitraseSharedMemory
+EXPORTS
+    tulisData
+    bacaData
